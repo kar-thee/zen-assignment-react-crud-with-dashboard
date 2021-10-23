@@ -27,7 +27,7 @@ const Dashboard = ({ children }) => {
               >
                 <i
                   id="dashboard-icon"
-                  class="fas fa-cog d-none d-md-block p-2 fs-2 custom-icons"
+                  className="fas fa-cog d-none d-md-block p-2 fs-2 custom-icons"
                 ></i>
                 <h5 className="side-titles">Dashboard</h5>
               </li>
@@ -39,7 +39,7 @@ const Dashboard = ({ children }) => {
                 data-bs-toggle="collapse"
                 data-bs-target="#user-menu"
               >
-                <i class="fas fa-users d-none d-md-block m-2 custom-icons"></i>
+                <i className="fas fa-users d-none d-md-block m-2 custom-icons"></i>
                 <h6 className="side-titles">Users</h6>
               </button>
               <div className="collapse" id="user-menu">
@@ -69,7 +69,7 @@ const Dashboard = ({ children }) => {
                 data-bs-toggle="collapse"
                 data-bs-target="#product-menu"
               >
-                <i class="fas fa-truck d-none d-md-block m-2 custom-icons"></i>
+                <i className="fas fa-truck d-none d-md-block m-2 custom-icons"></i>
                 <h6 className="side-titles">Products</h6>
               </button>
 
@@ -105,17 +105,16 @@ const Dashboard = ({ children }) => {
           id="navbar"
           className="navbar navbar-expand-md navbar-light bg-light"
         >
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#!">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#!">
               <h2>CRUD in React</h2>
             </a>
             <a
               href="#"
-              className="d-flex p-2 ms-auto align-items-center justify-content-between"
+              className="position-relative"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"
               title="Click to toggle Sidebar"
-              class="position-relative"
             >
               <img
                 className="img-thumbnail rounded-circle me-1 "
@@ -127,7 +126,7 @@ const Dashboard = ({ children }) => {
               />
               <span
                 id="img-status"
-                class={`position-absolute top-25 start-60 translate-middle  border border-light rounded-circle ${
+                className={`position-absolute top-25 start-60 translate-middle  border border-light rounded-circle ${
                   sidebarVisibility ? "bg-danger" : "bg-success"
                 }`}
               ></span>
