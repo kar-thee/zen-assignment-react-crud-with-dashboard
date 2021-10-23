@@ -6,7 +6,7 @@ const UserProfile = () => {
   console.log(params);
   return (
     <>
-      <h2>View UserProfile</h2>
+      <h2>View UserProfile {params ? params : "none"}</h2>
     </>
   );
 };
