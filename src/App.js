@@ -11,32 +11,36 @@ import EditUserProfile from "./pages/EditUserProfile";
 import HomePage from "./HomePage";
 import Data from "./config/DataFetch";
 
+import UserContext from "./context/UserContext";
+
 function App() {
   return (
     <>
-      <Switch>
-        <Route path="/dashboard/all-users">
-          <GetUsers />
-        </Route>
-        <Route path="/dashboard/create-user">
-          <NewUser />
-        </Route>
-        <Route path="/dashboard/view-profile/:id">
-          <UserProfile />
-        </Route>
-        <Route path="/dashboard/editProfile/:id">
-          <EditUserProfile />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/dashboard"></Redirect>
-        </Route>
-        <Route path="/dashboard">
-          <HomePage />
-        </Route>
-        <Route path="/data">
-          <Data />
-        </Route>
-      </Switch>
+      <UserContext>
+        <Switch>
+          <Route path="/dashboard/all-users">
+            <GetUsers />
+          </Route>
+          <Route path="/dashboard/create-user">
+            <NewUser />
+          </Route>
+          <Route path="/dashboard/view-profile/:id">
+            <UserProfile />
+          </Route>
+          <Route path="/dashboard/editProfile/:id">
+            <EditUserProfile />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/dashboard"></Redirect>
+          </Route>
+          <Route path="/dashboard">
+            <HomePage />
+          </Route>
+          <Route path="/data">
+            <Data />
+          </Route>
+        </Switch>
+      </UserContext>
     </>
   );
 }

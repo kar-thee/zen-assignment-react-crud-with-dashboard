@@ -7,4 +7,5 @@ const DataFetch = async () => {
   return data;
 };
 
+DataFetch();
 export default DataFetch;

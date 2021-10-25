@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Dashboard from "../Dashboard";
-import DataFetch from "../config/DataFetch";
 import { Link } from "react-router-dom";
+import { userData } from "../context/UserContext";
 
 const GetUsers = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    DataFetch().then((val) => setData(val));
-  }, []);
-  //componentdidmount
+  const value = useContext(userData);
 
-  if (data) {
-    console.log("state", data);
-  }
+  useEffect(() => {
+    setData(value);
+  }, [value]);
+
   return (
     <Dashboard>
       <div className="container-fluid p-0 p-md-auto m-0 m-md-auto">
