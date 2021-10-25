@@ -15,7 +15,7 @@ const GetUsers = () => {
   return (
     <Dashboard>
       <div className="container-fluid p-0 p-md-auto m-0 m-md-auto">
-        <div className="container-sm row w-auto m-md-auto mx-1 p-1 p-md-auto justify-content-center">
+        <div className="container-sm row w-auto m-md-auto mx-1 p-1 p-md-auto justify-content-center ">
           {/* {data ? data.map((d, i) => <li key={i}>{d.name}</li>) : "loading..."} */}
           {data
             ? data.map((d) => (
