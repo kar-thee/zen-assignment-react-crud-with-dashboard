@@ -1,18 +1,51 @@
-import React from "react";
-import { useParams } from "react-router";
+import React, { useState } from "react";
+import { useParams, useHistory } from "react-router";
 
 import Dashboard from "../Dashboard";
 import UserForm from "./UserForm";
 
-import "../context/UserContext";
+import FilterUser from "../context/FilterUser";
+import EditData from "../config/EditData";
+
 const EditUserProfile = () => {
+  const [state, setState] = useState(null);
+
   const params = useParams();
-  console.log(params);
+  const userId = params.id;
+  const history = useHistory();
+
+  const getUser = async () => {
+    const userData = await FilterUser(userId);
+    setState(userData);
+  };
+  getUser();
+
+  if (!state) {
+    return <div>Loading.....</div>;
+  }
+
+  const submitFormAfterEdit = async (ev, stateValue) => {
+    ev.preventDefault();
+    console.log(stateValue, "stateValue from edituser");
+    const response = await EditData(userId, stateValue);
+    if (response === 200) {
+      console.log(response);
+      // history.push(`dashboard/view-profile/${userId}`);
+      history.replace("/dashboard/all-users");
+    }
+  };
 
   return (
     <Dashboard>
-      <h2>Edit UserProfile {params.id}</h2>
-      {/* <UserForm data={} submitForm={}/> */}
+      <h2>Edit UserProfile ID: {params.id}</h2>
+      <div className="container-fluid p-0 mx-auto my-4 ">
+        <div className="container-sm row m-auto ">
+          <div className="card-header bg-dark text-secondary text-center text-capitalize">
+            <h2>Edit userValue</h2>
+          </div>
+          <UserForm data={state[0]} submitForm={submitFormAfterEdit} />
+        </div>
+      </div>
     </Dashboard>
   );
 };

@@ -33,7 +33,14 @@ const NewUser = () => {
   };
   return (
     <Dashboard>
-      <UserForm data={state} submitForm={submitForm} />
+      <div className="container-fluid p-0 mx-auto my-4 ">
+        <div className="container-sm row m-auto ">
+          <div className="card-header bg-dark text-secondary text-center text-capitalize">
+            <h2>Create New User</h2>
+          </div>
+          <UserForm data={state} submitForm={submitForm} />
+        </div>
+      </div>
     </Dashboard>
   );
 };

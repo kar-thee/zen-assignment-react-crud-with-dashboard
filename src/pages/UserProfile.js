@@ -1,5 +1,5 @@
 /* eslint-disable no-lone-blocks */
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router";
 import Dashboard from "../Dashboard";
 import { userDataUpdater } from "../context/UserContext";
@@ -17,7 +17,7 @@ const UserProfile = () => {
   const contextFun = useContext(userDataUpdater);
   const userId = params.id;
 
-  //need to filter obj based on id
+  //need to filter userobj based on id
   let userObj;
   const getUserObj = async () => {
     userObj = await FilterUser(userId);
