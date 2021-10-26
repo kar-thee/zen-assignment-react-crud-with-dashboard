@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -110,7 +109,7 @@ const Dashboard = ({ children }) => {
               <h2>CRUD in React</h2>
             </a>
             <a
-              href="#"
+              href="#!"
               className="position-relative"
               data-bs-toggle="tooltip"
               data-bs-placement="bottom"

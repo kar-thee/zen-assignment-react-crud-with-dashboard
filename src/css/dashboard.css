@@ -30,10 +30,10 @@
   align-items: center;
 }
 #dashboard-icon {
-  /* animation: fa-spin 6s infinite alternate; */
+  animation: fa-spin 6s infinite alternate;
 }
 #dashboard-icon:hover {
-  /* animation: fa-spin 1s infinite linear; */
+  animation: fa-spin 1s infinite linear;
   color: steelblue;
   cursor: none;
 }
