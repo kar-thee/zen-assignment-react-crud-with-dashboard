@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useHistory } from "react-router";
 
 import Dashboard from "../Dashboard";
@@ -6,10 +6,12 @@ import UserForm from "./UserForm";
 
 import FilterUser from "../context/FilterUser";
 import EditData from "../config/EditData";
+import { userDataUpdater } from "../context/UserContext";
 
 const EditUserProfile = () => {
   const [state, setState] = useState(null);
 
+  const contextFunc = useContext(userDataUpdater);
   const params = useParams();
   const userId = params.id;
   const history = useHistory();
@@ -29,6 +31,7 @@ const EditUserProfile = () => {
     console.log(stateValue, "stateValue from edituser");
     const response = await EditData(userId, stateValue);
     if (response === 200) {
+      contextFunc();
       console.log(response);
       // history.push(`dashboard/view-profile/${userId}`);
       history.replace("/dashboard/all-users");

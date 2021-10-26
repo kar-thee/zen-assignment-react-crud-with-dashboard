@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Dashboard from "./Dashboard";
-
+import { userData } from "./context/UserContext";
 const HomePage = () => {
+  const userTotal = useContext(userData);
   return (
     <Dashboard>
       <div className="container m-md-5 my-4 mb-md-3 p-4 mx-3 p-md-5 w-auto border-2 border-white bg-gradient card shadow-lg">
@@ -16,7 +17,7 @@ const HomePage = () => {
             <div className="card-body d-flex bg-white justify-content-between p-2 m-2">
               <h6 className="card-title">Users Registered</h6>
               <span className="card-text badge bg-info d-flex align-items-center text-black">
-                20
+                {userTotal ? userTotal.length : null}
               </span>
             </div>
           </div>
