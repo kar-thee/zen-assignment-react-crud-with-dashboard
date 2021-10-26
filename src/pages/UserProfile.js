@@ -2,28 +2,50 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Dashboard from "../Dashboard";
-import { userData } from "../context/UserContext";
+import { userDataUpdater } from "../context/UserContext";
+import { Link, useHistory } from "react-router-dom";
+
+import DeleteData from "../config/DeleteData";
+import FilterUser from "../context/FilterUser";
 
 const UserProfile = () => {
+  const history = useHistory();
   const params = useParams();
   // console.log(params);
   const [state, setState] = useState([]);
 
-  const value = useContext(userData);
-  const indexPos = params.id - 1;
+  const contextFun = useContext(userDataUpdater);
+  const userId = params.id;
 
-  useEffect(() => {
-    setState(new Array(value[indexPos]));
-  }, [indexPos, value]);
+  //need to filter obj based on id
+  let userObj;
+  const getUserObj = async () => {
+    userObj = await FilterUser(userId);
+    // console.log(userObj, "userObj");
+    setState(userObj);
+  };
+  getUserObj();
 
   return (
     <Dashboard>
       <div className="card-footer d-flex ">
-        <button className="ms-auto">
-          <i className="fas fa-edit"></i>
-          <span>edit</span>
-        </button>
-        <button>
+        <Link to={`/dashboard/editProfile/${userId}`} className="ms-auto">
+          <button>
+            <i className="fas fa-edit"></i>
+            <span>edit</span>
+          </button>
+        </Link>
+        <button
+          onClick={async () => {
+            const status = await DeleteData(userId);
+            if (status === 200) {
+              contextFun();
+              history.replace("/dashboard/all-users");
+            } else {
+              alert("Error try again");
+            }
+          }}
+        >
           <i className="fas fa-trash"></i>
           <span>Delete</span>
         </button>
@@ -68,8 +90,8 @@ const UserProfile = () => {
                     <div className="col  card-body text-center p-0 p-md-auto">
                       <h1>{user.name}</h1>
                       <p>{user.email}</p>
-                      <p>{user.gender}</p>
-                      <p>{user.location}</p>
+                      <p>{user.job}</p>
+                      <p>{user.country}</p>
                       <p>{user.phone}</p>
                     </div>
                   </div>
@@ -90,3 +112,12 @@ export default UserProfile;
            then implement it in profile and create edit and delete buttons 
            also continue with create users */
 }
+
+// onClick={async () => {
+//   const EditDataValue = await EditData(userId);
+//   if (EditDataValue.status === 200) {
+//     contextFun();
+//     history.replace(`/dashboard/editProfile/${userId}`);
+//   }
+// }}
+// onClick={history.push(`/dashboard/editProfile/${userId}`)}
