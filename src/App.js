@@ -30,14 +30,14 @@ function App() {
           <Route path="/dashboard/editProfile/:id">
             <EditUserProfile />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/dashboard"></Redirect>
-          </Route>
           <Route path="/dashboard">
             <HomePage />
           </Route>
           <Route path="/data">
             <Data />
+          </Route>
+          <Route path="/">
+            <Redirect to="/dashboard"></Redirect>
           </Route>
         </Switch>
       </UserContext>
